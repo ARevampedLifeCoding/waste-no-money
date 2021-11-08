@@ -29,9 +29,9 @@ const config = {
   plugins: [
     new WebpackPwaManifest({
       fingerprints: false,
-      name: 'Newsy app',
-      short_name: 'Newsy',
-      description: 'An application that allows you to view different news articles and save your favorites.',
+      name: 'Budget App',
+      short_name: 'Budget',
+      description: 'An application that allows you to track your spending while offline.',
       background_color: '#01579b',
       theme_color: '#ffffff',
       'theme-color': '#ffffff',
