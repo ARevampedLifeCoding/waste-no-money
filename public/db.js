@@ -49,3 +49,5 @@ request.onerror = (record) => {
     }
   };
 };
+
+window.addEventListener('online', checkDatabase)
