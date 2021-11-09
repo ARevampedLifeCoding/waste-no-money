@@ -29,7 +29,7 @@ const config = {
   plugins: [
     new WebpackPwaManifest({
       fingerprints: false,
-      name: 'Budget App',
+      name: 'waste-no-money',
       short_name: 'Budget',
       description: 'An application that allows you to track your spending while offline.',
       background_color: '#01579b',
