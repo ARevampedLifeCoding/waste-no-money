@@ -8,3 +8,7 @@ request.onupgradeneeded = (e) => {
   const db = e.target.result;
   db.creatObjectStore("pending", { autoIncrement: true });
 };
+
+request.onsuccess = (e) => {
+    db= e.target.result;
+}
