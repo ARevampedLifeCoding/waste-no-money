@@ -29,17 +29,23 @@ request.onerror = (record) => {
   const getAll = store.getAll();
 
   getAll.onsuccess = () => {
-   if(getAll.length > 0){
-       fetch("/api/transaction",{ 
-           method: "POST",
-           body: JSON.stringify(getAll.result),
-           headers: { 
-               Accept: "application/json",
-               "Content-Type": "application/json",
-           },
-       })
-   }
-      }
+    if (getAll.length > 0) {
+      fetch("/api/transaction", {
+        method: "POST",
+        body: JSON.stringify(getAll.result),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          if (res.length !== 0) {
+            transaction = db.transaction(["pending"], "readwrite");
+            const currentStore = transaction.objectStore("pending");
+            currentStore.clear();
+          }
+        });
     }
-  
-
+  };
+};
