@@ -18,7 +18,28 @@ request.onsuccess = (e) => {
 };
 
 request.onerror = (record) => {
-    const transaction = db.transaction(["pending"],"readwrite")
-    const store = transaction.objectStore("pending");
-    store.add(record);
+  const transaction = db.transaction(["pending"], "readwrite");
+  const store = transaction.objectStore("pending");
+  store.add(record);
 };
+
+(checkDatabase) => {
+  const transaction = db.transaction(["pending"], "readwrite");
+  const store = transaction.objectStore("pending");
+  const getAll = store.getAll();
+
+  getAll.onsuccess = () => {
+   if(getAll.length > 0){
+       fetch("/api/transaction",{ 
+           method: "POST",
+           body: JSON.stringify(getAll.result),
+           headers: { 
+               Accept: "application/json",
+               "Content-Type": "application/json",
+           },
+       })
+   }
+      }
+    }
+  
+
